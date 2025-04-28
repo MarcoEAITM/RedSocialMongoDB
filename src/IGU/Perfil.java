@@ -28,13 +28,15 @@ import redsocial.Conexion;
 public class Perfil extends javax.swing.JFrame {
     MongoDatabase DB = Conexion.getDatabase();
     String NombreUsuarioString = Login.getDocument().toString();
+    ImageIcon icon = Login.getIcon();
     
 
     /**
      * Creates new form Perfil
      */
     public Perfil() {
-        initComponents();
+        initComponents();       
+        
     }
 
     /**
@@ -47,30 +49,125 @@ public class Perfil extends javax.swing.JFrame {
     private void initComponents() {
 
         Foto = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        Search = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        Foto.setIcon(Login.getIcon());
         Foto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FotoActionPerformed(evt);
             }
         });
 
+        jLabel1.setText(NombreUsuarioString);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/IcoFB.png"))); // NOI18N
+        jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        Search.setText("🔎 Buscar");
+        Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchActionPerformed(evt);
+            }
+        });
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/IcoVideo.png"))); // NOI18N
+        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/IcoMarket.png"))); // NOI18N
+        jButton3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/IcoGrupos.png"))); // NOI18N
+        jButton4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/IcoVideojuegos.png"))); // NOI18N
+        jButton5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/IcoHome.png"))); // NOI18N
+        jButton6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(Search, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(327, 327, 327)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
+                .addGap(18, 18, 18)
+                .addComponent(jButton5)
+                .addContainerGap(662, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(Search)
+                                .addComponent(jButton3)
+                                .addComponent(jButton4))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton6)
+                                    .addComponent(jButton1)
+                                    .addComponent(jButton5))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(148, 148, 148)
-                .addComponent(Foto, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1217, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(148, 148, 148)
+                                .addComponent(Foto, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(183, 183, 183)
+                                .addComponent(jLabel1)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(112, 112, 112)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69)
                 .addComponent(Foto, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(491, Short.MAX_VALUE))
+                .addGap(51, 51, 51)
+                .addComponent(jLabel1)
+                .addContainerGap(424, Short.MAX_VALUE))
         );
 
         pack();
@@ -79,9 +176,9 @@ public class Perfil extends javax.swing.JFrame {
     
     
     private void FotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FotoActionPerformed
-       popUp pop = new popUp(this, true);
-       pop.setVisible(true);
-       pop.setLocationRelativeTo(this);
+       popUp ventanaEmergente = new popUp(this, true);
+       ventanaEmergente.setVisible(true);
+       ventanaEmergente.setLocationRelativeTo(this);
        
               // HACER QUE EL BOTÓN SE HAGA LA IMAGEN DE PERFIL
        
@@ -100,10 +197,10 @@ if (usuario != null && usuario.containsKey("imagen")) {
         if (img != null) {
             // Escalar imagen al tamaño del JLabel o JButton
             Image scaledImg = img.getScaledInstance(Foto.getWidth(), Foto.getHeight(), Image.SCALE_SMOOTH);
-            ImageIcon icon = new ImageIcon(scaledImg);
+            ImageIcon icono = new ImageIcon(scaledImg);
 
             // Mostrar en un JLabel
-            Foto.setIcon(icon);
+            Foto.setIcon(icono);
 
             // O si prefieres en un JButton:
             // btnFoto.setIcon(icon);
@@ -120,6 +217,10 @@ if (usuario != null && usuario.containsKey("imagen")) {
  
         
     }//GEN-LAST:event_FotoActionPerformed
+
+    private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,5 +262,14 @@ if (usuario != null && usuario.containsKey("imagen")) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Foto;
+    private javax.swing.JTextField Search;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

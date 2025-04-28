@@ -7,8 +7,15 @@ package IGU;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.bson.Document;
+import org.bson.types.Binary;
 import redsocial.Conexion;
 
 /**
@@ -18,6 +25,7 @@ import redsocial.Conexion;
 public class Login extends javax.swing.JFrame {
 MongoDatabase DB = Conexion.getDatabase(); //Obtener la base de datos
 private static Document usuarioDocument;
+private static ImageIcon icon;
     /**
      * Creates new form Login
      */
@@ -193,7 +201,7 @@ private static Document usuarioDocument;
 
     private void ConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConectarActionPerformed
         // TODO add your handling code here:
-        
+               
         char[] passwordChars = Contraseña.getPassword();
         String ContraseñaString = new String(passwordChars); // Convertir a String
         
@@ -208,7 +216,7 @@ private static Document usuarioDocument;
             
             MongoCollection<Document> collection = DB.getCollection("datosUsuarios");
               usuarioDocument = collection.find(Filters.eq("Usuario", Usuario.getText())).first(); //busca en la collection datosUsuarios la clave "Nombre" y el valor que ingresamos en el campo usuario Ejemplo: {Nombre : Marco} y en caso
-                                                                                                                            //de que el nombre exista éste se guardará en "usuarioDocument", en caso de no existir no guarda nada dejando el valor nulo (null)
+                                                                                                                            //de que el nombre exista éste se guardará en "usuarioDocument", en caso de no existir no guarda nada dejando el valor nulo (null)                                                                                                             
             if (usuarioDocument == null) { //Comprueba si guardó el usuario en usuarioDocument
                 JOptionPane.showMessageDialog(this, "No se encontró el usuario", "Error", JOptionPane.ERROR_MESSAGE);
                 return; //tambien detiene el metodo en caso de que se cumpla la condición
@@ -229,13 +237,53 @@ private static Document usuarioDocument;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
+        //Intentando agarrar la imagen de la base de datos
+        /**
+         * 
+         * 
+         * 
+         * 
+         */
+        MongoCollection<Document> collection = DB.getCollection("datosUsuarios");
+        Document usuario = collection.find(Filters.eq("Usuario", Usuario.getText())).first();
+
+if (usuario != null && usuario.containsKey("imagen")) {
+    Binary bin = usuario.get("imagen", Binary.class);
+    byte[] imageBytes = bin.getData();
+
+    try {
+        ByteArrayInputStream bais = new ByteArrayInputStream(imageBytes);
+        BufferedImage img = ImageIO.read(bais);
+
+        if (img != null) {
+            // Escalar imagen al tamaño del JLabel o JButton
+            Image scaledImg = img.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
+            //ImageIcon icon = new ImageIcon(scaledImg);
+            icon = new ImageIcon(scaledImg);
+
+           
+
+            // btnFoto.setIcon(icon);
+        }
+
+    } catch (IOException e) {
+        JOptionPane.showMessageDialog(null, "Error al convertir la imagen: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+} else {
+    JOptionPane.showMessageDialog(null, "No se encontró imagen para este usuario.");
+}
+            
     }//GEN-LAST:event_ConectarActionPerformed
 
         //Metodo para retornar el usuario que estamos manejando 
         public static String getDocument(){
             return usuarioDocument.getString("Nombre");
+        }
+        
+        //Metodo para retornar la Imagen que tiene el usuario
+        public static ImageIcon getIcon(){
+            return icon;
         }
         
        
