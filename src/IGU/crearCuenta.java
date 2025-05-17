@@ -6,7 +6,6 @@ package IGU;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import java.util.Arrays;
 import javax.swing.JOptionPane;
 import org.bson.Document;
 import redsocial.Conexion;

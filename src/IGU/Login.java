@@ -7,15 +7,9 @@ package IGU;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.bson.Document;
-import org.bson.types.Binary;
 import redsocial.Conexion;
 
 /**
@@ -243,7 +237,7 @@ private static ImageIcon icon;
          * 
          * 
          * 
-         */
+         
         MongoCollection<Document> collection = DB.getCollection("datosUsuarios");
         Document usuario = collection.find(Filters.eq("Usuario", Usuario.getText())).first();
 
@@ -273,7 +267,7 @@ if (usuario != null && usuario.containsKey("imagen")) {
 } else {
     JOptionPane.showMessageDialog(null, "No se encontró imagen para este usuario.");
 }
-            
+            */
     }//GEN-LAST:event_ConectarActionPerformed
 
         //Metodo para retornar el usuario que estamos manejando 

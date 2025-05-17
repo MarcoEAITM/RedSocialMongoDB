@@ -4,14 +4,20 @@
  */
 package IGU;
 
-import javax.swing.ImageIcon;
+
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.bson.Document;
+import org.bson.types.Binary;
 import redsocial.Conexion;
 
 
@@ -22,7 +28,8 @@ import redsocial.Conexion;
 public class Feed extends javax.swing.JFrame {
     private static MongoDatabase DB = Conexion.getDatabase();
      private static String NombreUsuarioString = Login.getDocument();
-    //ImageIcon icon = Login.getIcon();
+   
+    private static ImageIcon icon;
     
     /**
      * Creates new form Feed
@@ -134,7 +141,7 @@ public class Feed extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        Foto.setIcon(Login.getIcon());
+        Foto.setIcon(getIcon());
         Foto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FotoActionPerformed(evt);
@@ -269,6 +276,38 @@ public class Feed extends javax.swing.JFrame {
         MongoCollection<Document> collection = DB.getCollection("datosUsuarios");
              Document filtro = collection.find(Filters.eq("Usuario", NombreUsuarioString)).first();
         return filtro.getString("Nombre");
+    }
+    
+    public static ImageIcon getIcon(){
+        MongoCollection<Document> collection = DB.getCollection("datosUsuarios");
+        Document filtro = collection.find(Filters.eq("Usuario", NombreUsuarioString)).first();
+        if (filtro != null && filtro.containsKey("imagen")) {
+    Binary bin = filtro.get("imagen", Binary.class);
+    byte[] imageBytes = bin.getData();
+
+    try {
+        ByteArrayInputStream bais = new ByteArrayInputStream(imageBytes);
+        BufferedImage img = ImageIO.read(bais);
+
+        if (img != null) {
+            // Escalar imagen al tamaño del JLabel o JButton
+            Image scaledImg = img.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
+            //ImageIcon icon = new ImageIcon(scaledImg);
+            icon = new ImageIcon(scaledImg);
+
+           
+
+            // btnFoto.setIcon(icon);
+        }
+
+    } catch (IOException e) {
+        JOptionPane.showMessageDialog(null, "Error al convertir la imagen: " + e.getMessage(), "Errors", JOptionPane.ERROR_MESSAGE);
+    }
+
+} else {
+    JOptionPane.showMessageDialog(null, "No se encontró imagen para este usuario.");
+}
+        return icon;
     }
     
     

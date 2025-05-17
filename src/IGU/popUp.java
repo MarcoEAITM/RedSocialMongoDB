@@ -20,7 +20,7 @@ import redsocial.Conexion;
  */
 public class popUp extends java.awt.Dialog {
     MongoDatabase DB = Conexion.getDatabase();
-    String NombreUsuarioString = Login.getDocument().toString();
+    String NombreUsuarioString = Feed.nombreActualizado();
 
     /**
      * Creates new form popUp

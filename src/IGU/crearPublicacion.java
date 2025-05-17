@@ -7,7 +7,6 @@ package IGU;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.bson.Document;
 import redsocial.Conexion;

@@ -10,12 +10,9 @@ import com.mongodb.client.model.Filters;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.bson.Document;
 import org.bson.types.Binary;
@@ -67,7 +64,7 @@ public class Perfil extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Foto.setIcon(Login.getIcon());
+        Foto.setIcon(Feed.getIcon());
         Foto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FotoActionPerformed(evt);
