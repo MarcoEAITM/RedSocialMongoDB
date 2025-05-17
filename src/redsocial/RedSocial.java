@@ -5,6 +5,7 @@
 package redsocial;
 
 import IGU.Login;
+import com.formdev.flatlaf.FlatLightLaf;
 
 /**
  *
@@ -17,6 +18,7 @@ public class RedSocial {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        FlatLightLaf.setup();  
         Conexion.Con();
         Login pant = new Login();
         pant.setVisible(true);

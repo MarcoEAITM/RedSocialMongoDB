@@ -267,7 +267,7 @@ if (usuario != null && usuario.containsKey("imagen")) {
         }
 
     } catch (IOException e) {
-        JOptionPane.showMessageDialog(null, "Error al convertir la imagen: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Error al convertir la imagen: " + e.getMessage(), "Errors", JOptionPane.ERROR_MESSAGE);
     }
 
 } else {
@@ -278,7 +278,7 @@ if (usuario != null && usuario.containsKey("imagen")) {
 
         //Metodo para retornar el usuario que estamos manejando 
         public static String getDocument(){
-            return usuarioDocument.getString("Nombre");
+            return usuarioDocument.getString("Usuario");
         }
         
         //Metodo para retornar la Imagen que tiene el usuario

@@ -4,17 +4,22 @@
  */
 package redsocial;
 
+import IGU.Feed;
+import IGU.Login;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoIterable;
+import com.mongodb.client.model.Filters;
+import org.bson.Document;
 
 /**
  *
  * @author Marco
  */
 public class Conexion {
-    
+   
     private static MongoDatabase DB; //MongoDatabase es ahora un atributo estático para que se pueda compartir en todo el proyecto.
     public static void Con(){ //Para poder llamar la conexión desde el metodo main
         
@@ -41,5 +46,16 @@ String uri = "mongodb://localhost:27017"; // Cambia el puerto si es necesario
          public static MongoDatabase getDatabase(){ //metodo para obtener la conexion desde otras clases
             return DB;
         } 
+         
+         public static void paginaPrincipal() {
+             Feed perfil = new Feed();
+        perfil.setVisible(true);
+        perfil.setLocationRelativeTo(null);
+        }
+         
+     
+         
+       
+        
 }
 
