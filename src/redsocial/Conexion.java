@@ -47,15 +47,15 @@ String uri = "mongodb://localhost:27017"; // Cambia el puerto si es necesario
             return DB;
         } 
          
-         public static void paginaPrincipal() {
-             Feed perfil = new Feed();
+         public static void paginaPrincipal() {         
+        Feed perfil = new Feed();
         perfil.setVisible(true);
         perfil.setLocationRelativeTo(null);
-        }
+         }
+         
          
      
          
-       
-        
+             
 }
 

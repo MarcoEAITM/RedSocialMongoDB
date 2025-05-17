@@ -148,7 +148,9 @@ String ContraseñaString = new String(passwordChars); // Convertir a String
                  collection.updateOne(usuarioDocument,new Document("$set", documentoNuevo));
             
         } else {
-                 JOptionPane.showMessageDialog(null, "Existe la clave Musica en la collection" + " " + musicaDocument);
+                 JOptionPane.showMessageDialog(null, "Existe la clave Musica en la collection" + " " + musicaDocument + " "+ "Se actualizarán todos los datos anteriores ");
+                 Document documentoNuevo = new Document().append("Musica", Musica.getText()).append("Pelicula", Pelicula.getText()) .append("Nombre", Nombre.getText()).append("Contraseña", ContraseñaString);
+                 collection.updateOne(usuarioDocument,new Document("$set", documentoNuevo));
         }
 
        /* try {
